@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    console.log("Running app.js.");
-
-
 
     // Initialize Firebase
     var config = {
@@ -15,13 +12,6 @@ $(document).ready(function () {
     firebase.initializeApp(config);
 
     var db = firebase.database();
-
-    var train = {
-        name: "TEST Train",
-        destination: "TEST Destination",
-        frequency: 30,
-        startTime: "8:00AM"
-    }
 
     $("button").on("click", function (e) {
         e.preventDefault();
@@ -37,15 +27,9 @@ $(document).ready(function () {
 
     getTrains(db);
 
-
 });
 
 function pushTrainToFirebase(db, train) {
-
-    // var key = db.ref('trains/').push({
-    //     name: trainname,
-    //     destination: ,
-    // }).key;
 
     var key = db.ref('trains/').push(train);
     return key;
@@ -56,20 +40,15 @@ function getTrains(db) {
     var key;
     var ref = db.ref('trains/');
 
-    // ref.orderByChild("isPlaying").equalTo(0).on("child_added", function (snapshot)
     ref.on("child_added", function (snapshot) {
         console.log("Snapshot key: " + snapshot.key);
         console.log(snapshot.val());
         let trainInfo = snapshot.val();
         key = snapshot.key;
 
-        // Add train to table.
         let nextArrivalData = determineNextArrival(trainInfo);
         let nextArrivalText = nextArrivalData.nextArrival;
         let minutesUntilArrivalText = nextArrivalData.minutesUntilArrival;
-        // nextArrival: nextArrivalTime,
-        // minutesUntilArrival: mnextTrain
-        // let minutesAway = determineMinutesAway(trainInfo);
 
 
         $("#trainTable").find('tbody')
@@ -81,13 +60,6 @@ function getTrains(db) {
                 .append($('<td>').text(nextArrivalText))
                 .append($('<td>').text(minutesUntilArrivalText))
             );
-
-
-        // destination: "asdf"
-        // frequency: "asdf"
-        // name: "asdf"
-        // startTime: "asdf"
-
 
     });
 }
@@ -122,8 +94,6 @@ function determineNextArrival(train) {
     // 7 - 2 = 5 minutes away
     // 5 + 3:16 = 3:21
 
-
-
     /* MY CODE */
     let mtFrequency = train.frequency;
     let mfirstTime = train.startTime;
@@ -150,30 +120,4 @@ function determineNextArrival(train) {
         nextArrival: nextArrivalTime,
         minutesUntilArrival: mtMinutesTillTrain
     };
-
-
-    /*
-        // Assumptions
-        var tFrequency = 3;
-        // Time is 3:30 AM
-        var firstTime = "03:30";
-        // First Time (pushed back 1 year to make sure it comes before current time)
-        var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-        console.log(firstTimeConverted);
-        // Current Time
-        var currentTime = moment();
-        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-        // Difference between the times
-        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-        console.log("DIFFERENCE IN TIME: " + diffTime);
-        // Time apart (remainder)
-        var tRemainder = diffTime % tFrequency;
-        console.log(tRemainder);
-        // Minute Until Train
-        var tMinutesTillTrain = tFrequency - tRemainder;
-        console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-        // Next Train
-        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-        console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-    */
 }
