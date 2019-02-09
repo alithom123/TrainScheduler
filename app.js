@@ -29,7 +29,7 @@ $(document).ready(function () {
         train = {};
         train.name = $("#trainName").val();
         train.destination = $("#trainDestination").val();
-        train.frequency = $("#trainName").val();
+        train.frequency = $("#trainFrequency").val();
         train.startTime = $("#trainStartTime").val();
 
         pushTrainToFirebase(db, train);
@@ -76,6 +76,7 @@ function getTrains(db) {
             .append($('<tr>')
                 .append($('<td>').text(trainInfo.name))
                 .append($('<td>').text(trainInfo.destination))
+                .append($('<td>').text(trainInfo.startTime))
                 .append($('<td>').text(trainInfo.frequency))
                 .append($('<td>').text(nextArrivalText))
                 .append($('<td>').text(minutesUntilArrivalText))
@@ -121,10 +122,12 @@ function determineNextArrival(train) {
     // 7 - 2 = 5 minutes away
     // 5 + 3:16 = 3:21
 
-    let mtFrequency = train.frequency;
+
 
     /* MY CODE */
-    let mfirstTime = "03:30";
+    let mtFrequency = train.frequency;
+    let mfirstTime = train.startTime;
+    // let mfirstTime = "03:30";
     let mfirstTimeConverted = moment(mfirstTime, "HH:mm").subtract(1, "years");
     console.log("mfirstTimeConverted = ");
     console.log(mfirstTimeConverted);
