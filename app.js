@@ -148,7 +148,7 @@ function determineNextArrival(train) {
     let nextArrivalTime = moment(mnextTrain).format("hh:mm");
     return {
         nextArrival: nextArrivalTime,
-        minutesUntilArrival: mnextTrain
+        minutesUntilArrival: mtMinutesTillTrain
     };
 
 
