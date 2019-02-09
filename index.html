@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- Include Firebase JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+
+    <!-- Include My Application -->
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <h1>Train Scheduler</h1>
+
+    <!-- name: "TEST Train",
+    destination: "TEST Destination",
+    frequency: 30,
+    startTime: "8:00AM" -->
+    <h2>Submit a Train</h2>
+    <form>
+        <div class="form-group">
+            <label for="trainName">Train Name</label>
+            <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
+            <input class="form-control" id="trainName" placeholder="">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+            <input class="form-control" id="trainDestination" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="trainFrequency">Frequency in minutes</label>
+            <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+            <input class="form-control" id="trainFrequency" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="trainStartTime">Start Time (HH:mm) military time</label>
+            <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+            <input class="form-control" id="trainStartTime" placeholder="">
+        </div>
+
+        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+
+    <table class="table" id="trainTable">
+        <thead>
+            <tr>
+                <th scope="col">Train Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">Next Arrival</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <th scope="row">1</th>
+                <td>TEST TRAIN NAME</td>
+                <td>EL PASO</td>
+                <td>30</td>
+                <td>8:45PM</td>
+                <td>8:45PM</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>TEST TRAIN NAME</td>
+                <td>EL PASO</td>
+                <td>30</td>
+                <td>8:45PM</td>
+                <td>8:45PM</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>TEST TRAIN NAME</td>
+                <td>EL PASO</td>
+                <td>30</td>
+                <td>8:45PM</td>
+                <td>8:45PM</td>
+            </tr> -->
+        </tbody>
+    </table>
+
+</body>
+
+</html>
