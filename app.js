@@ -59,7 +59,8 @@ function getTrains(db) {
     // ref.orderByChild("isPlaying").equalTo(0).on("child_added", function (snapshot)
     ref.on("child_added", function (snapshot) {
         console.log("Snapshot key: " + snapshot.key);
-        console.log(snapshot);
+        console.log(snapshot.val());
+        let trainInfo = snapshot.val();
         key = snapshot.key;
 
         // Add train to table.
@@ -75,12 +76,18 @@ function getTrains(db) {
 
         $("#trainTable").find('tbody')
             .append($('<tr>')
-                .append($('<td>').text("fromCode"))
-                .append($('<td>').text("fromCode"))
-                .append($('<td>').text("fromCode"))
-                .append($('<td>').text("fromCode"))
-                .append($('<td>').text("fromCode"))
+                .append($('<td>').text(trainInfo.name))
+                .append($('<td>').text(trainInfo.destination))
+                .append($('<td>').text(trainInfo.frequency))
+                .append($('<td>').text(trainInfo.startTime))
+                .append($('<td>').text("?"))
             );
+
+
+        // destination: "asdf"
+        // frequency: "asdf"
+        // name: "asdf"
+        // startTime: "asdf"
 
 
     });
